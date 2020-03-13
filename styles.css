@@ -1,0 +1,16 @@
+.x-grid-cell-inner{
+    text-align: left !important;
+}
+
+.fa-pencil-square{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.red{
+    color: #ff0000;
+}
+
+.blue{
+    color: #3366ff;
+}

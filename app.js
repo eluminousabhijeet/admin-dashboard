@@ -9,14 +9,21 @@ Ext.application({
     extend: 'Admin.dashboard.Application',
 
     requires: [
-        'Admin.dashboard.view.main.Main'
+        'Admin.dashboard.*',
     ],
+    launch: function () {
+        // viewport = Ext.getCmp('viewport');
+        // target = viewport.down('#viewport-target');
+        // view = Ext.create('Admin.dashboard.view.main.Main');
+        // target.add(view);
+    },
 
     // The name of the initial view to create. With the classic toolkit this class
     // will gain a "viewport" plugin if it does not extend Ext.Viewport. With the
     // modern toolkit, the main view will be added to the Viewport.
     //
-    mainView: 'Admin.dashboard.view.main.Main'
+    mainView: 'Admin.dashboard.view.main.Main',
+    // autoCreateViewport: true
 
     //-------------------------------------------------------------------------
     // Most customizations should be made to Admin.dashboard.Application. If you need to

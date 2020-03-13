@@ -15,7 +15,8 @@ Ext.define('Admin.dashboard.view.main.Main', {
 
         'Admin.dashboard.view.main.MainController',
         'Admin.dashboard.view.main.MainModel',
-        'Admin.dashboard.view.main.List'
+        'Admin.dashboard.view.main.List',
+        // 'Admin.dashboard.view.Viewport'
     ],
 
     controller: 'main',
@@ -78,21 +79,21 @@ Ext.define('Admin.dashboard.view.main.Main', {
         title: 'Home',
         iconCls: 'x-fa fa-home',
         // The following grid shares a store with the classic version's grid as well!
-        items: [{
-            xtype: 'mainlist'
-        }]
+        bind: {
+            html: '<h1>Welcome to Dashboard</h1>'
+        }
     }, {
         title: 'Users',
         iconCls: 'x-fa fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        items: [{
+            xtype: 'Users'
+        }]
     }, {
-        title: 'Groups',
-        iconCls: 'x-fa fa-users',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        title: 'Products',
+        iconCls: 'x-fa fa-dropbox',
+        items: [{
+            xtype: 'Products'
+        }]
     }, {
         title: 'Settings',
         iconCls: 'x-fa fa-cog',
