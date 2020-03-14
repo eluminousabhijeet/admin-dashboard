@@ -1,10 +1,16 @@
 .x-grid-cell-inner{
     text-align: left !important;
+    /* text-transform: capitalize !important; */
 }
 
 .fa-pencil-square{
     margin-right: 20px;
     margin-left: 20px;
+}
+
+#form-1058-innerCt{
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .red{

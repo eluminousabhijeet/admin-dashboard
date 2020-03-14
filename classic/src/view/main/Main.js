@@ -13,10 +13,7 @@ Ext.define('Admin.dashboard.view.main.Main', {
         'Ext.plugin.Viewport',
         'Ext.window.MessageBox',
 
-        'Admin.dashboard.view.main.MainController',
-        'Admin.dashboard.view.main.MainModel',
-        'Admin.dashboard.view.main.List',
-        // 'Admin.dashboard.view.Viewport'
+        'Admin.dashboard.*'
     ],
 
     controller: 'main',
