@@ -19,7 +19,11 @@ Ext.define('Admin.dashboard.view.Users', {
         },
         edit: {
             iconCls: 'x-fa fa-pencil-square blue',
-            tooltip: 'Edit'
+            tooltip: 'Edit',
+            handler: function () {
+                Ext.getCmp('addUserModal').setTitle('Edit User');
+                Ext.getCmp('addUserModal').show();
+            }
         }
     },
     columns: [
@@ -57,79 +61,8 @@ Ext.define('Admin.dashboard.view.Users', {
         // handler: 'onAddClick'
         listeners: {
             click: function () {
-                new Ext.form.Panel({
-                    width: 500,
-                    height: 500,
-                    title: 'Add User',
-                    id: 'addUserModal',
-                    floating: true,
-                    closable: true,
-                    controller: 'user',
-                    defaultType: 'textfield',
-                    items: [{
-                        fieldLabel: 'First Name',
-                        name: 'firstname',
-                    }, {
-                        fieldLabel: 'Last Name',
-                        name: 'lastname',
-                    }, {
-                        fieldLabel: 'Username',
-                        name: 'username',
-                    }, {
-                        fieldLabel: 'Email',
-                        inputType: 'email',
-                        name: 'email',
-                    }, {
-                        fieldLabel: 'Contact',
-                        name: 'contact',
-                    }, {
-                        xtype: 'combo',
-                        fieldLabel: 'Gender',
-                        name: 'gender',
-                        valueField: 'gender',
-                        queryMode: 'local',
-                        store: ['male', 'female'],
-                        displayField: 'gender',
-                        onFocus: function () {
-                            var me = this;
-
-                            if (!me.isExpanded) {
-                                me.expand()
-                            }
-                            me.getPicker().focus();
-                        },
-                        autoSelect: true,
-                        forceSelection: true
-                    }, {
-                        xtype: 'combo',
-                        fieldLabel: 'Role',
-                        name: 'role',
-                        valueField: 'role',
-                        queryMode: 'local',
-                        store: ['admin', 'buyer', 'seller'],
-                        displayField: 'role',
-                        onFocus: function () {
-                            var me = this;
-
-                            if (!me.isExpanded) {
-                                me.expand()
-                            }
-                            me.getPicker().focus();
-                        },
-                        autoSelect: true,
-                        forceSelection: true
-                    }, {
-                        fieldLabel: 'Password',
-                        inputType: 'password',
-                        name: 'password',
-                    }],
-                    buttons: [
-                        {
-                            text: 'Add User',
-                            handler: 'onAddBtnClick'
-                        }
-                    ]
-                }).show();
+                Ext.getCmp('addUserModal').setTitle('Add User');
+                Ext.getCmp('addUserModal').show();
             }
         }
     }, {

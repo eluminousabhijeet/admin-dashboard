@@ -32,6 +32,156 @@ Ext.define('Admin.dashboard.Application', {
         Ext.create({
             xtype: loggedIn ? 'app-main' : 'login'
         });
+
+        var formPanel = Ext.create('Ext.form.Panel', {
+            width: 500,
+            height: 500,
+            title: 'Add User',
+            id: 'addUserModal',
+            region: 'center',
+            floating: true,
+            closable: true,
+            controller: 'user',
+            defaultType: 'textfield',
+            items: [{
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '0 0 5 0',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: 'First Name',
+                        name: 'firstname',
+                        allowBlank: false
+                    }
+                ]
+            }, {
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '0 0 5 0',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: 'Last Name',
+                        name: 'lastname',
+                        allowBlank: false
+                    }
+                ]
+            }, {
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '0 0 5 0',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: 'Username',
+                        name: 'username',
+                        allowBlank: false
+                    }
+                ]
+            }, {
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '0 0 5 0',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: 'Email',
+                        name: 'email',
+                        inputType: 'email',
+                        allowBlank: false
+                    }
+                ]
+            }, {
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '0 0 5 0',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: 'Contact',
+                        name: 'contact',
+                        allowBlank: false
+                    }
+                ]
+            }, {
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '0 0 5 0',
+                items: [
+                    {
+                        xtype: 'combo',
+                        fieldLabel: 'Gender',
+                        name: 'gender',
+                        valueField: 'gender',
+                        queryMode: 'local',
+                        allowBlank: false,
+                        store: ['male', 'female'],
+                        displayField: 'gender',
+                        onFocus: function () {
+                            var me = this;
+
+                            if (!me.isExpanded) {
+                                me.expand()
+                            }
+                            me.getPicker().focus();
+                        },
+                        autoSelect: true,
+                        forceSelection: true
+                    }
+                ]
+            }, {
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '0 0 5 0',
+                items: [
+                    {
+                        xtype: 'combo',
+                        fieldLabel: 'Role',
+                        name: 'role',
+                        valueField: 'role',
+                        queryMode: 'local',
+                        allowBlank: false,
+                        store: ['admin', 'buyer', 'seller'],
+                        displayField: 'role',
+                        onFocus: function () {
+                            var me = this;
+
+                            if (!me.isExpanded) {
+                                me.expand()
+                            }
+                            me.getPicker().focus();
+                        },
+                        autoSelect: true,
+                        forceSelection: true,
+                        editable: false
+                    }
+                ]
+            }, {
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '0 0 5 0',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: 'Password',
+                        inputType: 'password',
+                        name: 'password',
+                        allowBlank: false,
+                    }
+                ]
+            }],
+            buttons: [
+                {
+                    text: 'Submit',
+                    handler: 'onAddBtnClick'
+                },
+                {
+                    text: 'Close',
+                    handler: 'onCancelBtnClick'
+                }
+            ]
+        })
     },
 
     onAppUpdate: function () {

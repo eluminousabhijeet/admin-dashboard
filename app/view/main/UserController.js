@@ -32,7 +32,7 @@ Ext.define('Admin.dashboard.view.UserController', {
             });
     },
 
-    onAddBtnClick: function (button) {
+    onAddBtnClick: function (button, form) {
         var data = button.up('form');
         const firstname = data.getForm().findField("firstname").getValue();
         const lastname = data.getForm().findField("lastname").getValue();
@@ -47,35 +47,46 @@ Ext.define('Admin.dashboard.view.UserController', {
         console.log(firstname, lastname, username, email, contact, gender, role, password, status);
 
         const token = localStorage.getItem("x_access_token");
-        var successtype = "";
-        Ext.Ajax.request({
-            url: 'http://localhost:5000/admin/add-user/',
-            method: 'POST',
-            headers: {
-                'Authorization': token
-            },
-            params: {
-                firstname: firstname,
-                lastname: lastname,
-                username: username,
-                email: email,
-                contact: contact,
-                gender: gender,
-                role: role,
-                password: password,
-                status: status
-            },
-            success: function (response) {
-                var result = Ext.decode(response.responseText);
-                if (result.success == "true") {
-                    var grid = Ext.getCmp('userGrid');
-                    grid.getStore().reload();
-                    successtype = result.success;
-                } else {
-                    alert('failed');
-                }
-            },
-            failure: function () { console.log('failure'); }
-        });
+
+        if (Ext.getCmp('addUserModal').isValid()) {
+            Ext.Ajax.request({
+                url: 'http://localhost:5000/admin/add-user/',
+                method: 'POST',
+                headers: {
+                    'Authorization': token
+                },
+                params: {
+                    firstname: firstname,
+                    lastname: lastname,
+                    username: username,
+                    email: email,
+                    contact: contact,
+                    gender: gender,
+                    role: role,
+                    password: password,
+                    status: status
+                },
+                success: function (response) {
+                    var result = Ext.decode(response.responseText);
+                    if (result.success == "true") {
+                        Ext.getCmp('addUserModal').hide();
+                        Ext.getCmp('addUserModal').reset();
+                        swal({
+                            title: "Success",
+                            text: "User Added successfully..",
+                            icon: "success",
+                        });
+                        Ext.getStore('users').reload();
+                    } else {
+                        alert(result.message);
+                    }
+                },
+                failure: function () { console.log('failure'); }
+            });
+        } 
+    },
+
+    onCancelBtnClick: function (button) {
+        Ext.getCmp('addUserModal').hide();
     }
 })
