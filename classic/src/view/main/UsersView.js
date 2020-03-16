@@ -1,4 +1,4 @@
-Ext.define('Admin.dashboard.view.main.Users', {
+Ext.define('Admin.dashboard.view.Users', {
     extend: 'Ext.grid.Panel',
     xtype: 'Users',
     title: 'Users',
@@ -57,21 +57,14 @@ Ext.define('Admin.dashboard.view.main.Users', {
         // handler: 'onAddClick'
         listeners: {
             click: function () {
-                var genderStore = Ext.create('Ext.data.Store', {
-                    id : 'statesid',
-                    fields: ['abbr', 'name'],
-                    data : [
-                       {"abbr":"HTML", "name":"HTML"},
-                       {"abbr":"CSS", "name":"CSS"},
-                       {"abbr":"JS", "name":"JavaScript"}
-                    ]
-                 });
                 new Ext.form.Panel({
                     width: 500,
                     height: 500,
                     title: 'Add User',
+                    id: 'addUserModal',
                     floating: true,
                     closable: true,
+                    controller: 'user',
                     defaultType: 'textfield',
                     items: [{
                         fieldLabel: 'First Name',
@@ -84,29 +77,56 @@ Ext.define('Admin.dashboard.view.main.Users', {
                         name: 'username',
                     }, {
                         fieldLabel: 'Email',
+                        inputType: 'email',
                         name: 'email',
                     }, {
                         fieldLabel: 'Contact',
                         name: 'contact',
                     }, {
+                        xtype: 'combo',
                         fieldLabel: 'Gender',
-                        xtype: 'combobox',
-                        store: genderStore,
-                        valueField: 'name'
+                        name: 'gender',
+                        valueField: 'gender',
+                        queryMode: 'local',
+                        store: ['male', 'female'],
+                        displayField: 'gender',
+                        onFocus: function () {
+                            var me = this;
+
+                            if (!me.isExpanded) {
+                                me.expand()
+                            }
+                            me.getPicker().focus();
+                        },
+                        autoSelect: true,
+                        forceSelection: true
                     }, {
+                        xtype: 'combo',
                         fieldLabel: 'Role',
                         name: 'role',
+                        valueField: 'role',
+                        queryMode: 'local',
+                        store: ['admin', 'buyer', 'seller'],
+                        displayField: 'role',
+                        onFocus: function () {
+                            var me = this;
+
+                            if (!me.isExpanded) {
+                                me.expand()
+                            }
+                            me.getPicker().focus();
+                        },
+                        autoSelect: true,
+                        forceSelection: true
                     }, {
                         fieldLabel: 'Password',
+                        inputType: 'password',
                         name: 'password',
                     }],
                     buttons: [
                         {
-                            text: 'Submit',
-                            handler: function (btn) {
-                                var data = this.up('form');
-                                console.log(data.getForm().getValues());
-                            }
+                            text: 'Add User',
+                            handler: 'onAddBtnClick'
                         }
                     ]
                 }).show();

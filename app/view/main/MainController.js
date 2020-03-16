@@ -9,13 +9,28 @@ Ext.define('Admin.dashboard.view.main.MainController', {
 
     alias: 'controller.main',
 
-    onItemSelected: function (sender, record) {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+    init: function (view) {
+        this.control({
+            //Component listeners
+            'button[action=login]': {
+                click: this.onButtonClick
+            }
+        });
+        // this.application.on({
+        //     //Event handlers
+        // });
     },
 
-    onConfirm: function (choice) {
-        if (choice === 'yes') {
-            //
-        }
-    }
+    onClickButton: function () {
+        // Remove the localStorage key/value
+        localStorage.removeItem('TutorialLoggedIn');
+
+        // Remove Main View
+        this.getView().destroy();
+
+        // Add the Login Window
+        Ext.create({
+            xtype: 'login'
+        });
+    },
 });

@@ -18,6 +18,7 @@ Ext.define('Admin.dashboard.view.main.Main', {
 
     controller: 'main',
     viewModel: 'main',
+    plugins: 'viewport',
 
     ui: 'navigation',
 
@@ -76,9 +77,9 @@ Ext.define('Admin.dashboard.view.main.Main', {
         title: 'Home',
         iconCls: 'x-fa fa-home',
         // The following grid shares a store with the classic version's grid as well!
-        bind: {
-            html: '<h1>Welcome to Dashboard</h1>'
-        }
+        items: [{
+            xtype: 'home'
+        }]
     }, {
         title: 'Users',
         iconCls: 'x-fa fa-user',
