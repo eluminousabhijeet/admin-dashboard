@@ -134,7 +134,6 @@ Ext.define('Admin.dashboard.view.UserController', {
         Ext.getCmp('addUserModal').setTitle('Edit User');
         Ext.getCmp('addUserModal').show();
         var rec = grid.getStore().getAt(rowIndex);
-        console.log(rec.get('_id'));
         Ext.getCmp('firstnameField').setValue(rec.get('firstname'));
         Ext.getCmp('lastnameField').setValue(rec.get('lastname'));
         Ext.getCmp('usernameField').setValue(rec.get('username'));
