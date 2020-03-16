@@ -46,23 +46,25 @@ Ext.define('Admin.dashboard.Application', {
             items: [{
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 5 0',
+                margin: '40 0 10 70',
                 items: [
                     {
                         xtype: 'textfield',
                         fieldLabel: 'First Name',
                         name: 'firstname',
-                        allowBlank: false
+                        id: 'firstnameField',
+                        allowBlank: false,
                     }
                 ]
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 5 0',
+                margin: '0 0 10 70',
                 items: [
                     {
                         xtype: 'textfield',
                         fieldLabel: 'Last Name',
+                        id: 'lastnameField',
                         name: 'lastname',
                         allowBlank: false
                     }
@@ -70,11 +72,12 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 5 0',
+                margin: '0 0 10 70',
                 items: [
                     {
                         xtype: 'textfield',
                         fieldLabel: 'Username',
+                        id: 'usernameField',
                         name: 'username',
                         allowBlank: false
                     }
@@ -82,12 +85,13 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 5 0',
+                margin: '0 0 10 70',
                 items: [
                     {
                         xtype: 'textfield',
                         fieldLabel: 'Email',
                         name: 'email',
+                        id: 'emailField',
                         inputType: 'email',
                         allowBlank: false
                     }
@@ -95,11 +99,12 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 5 0',
+                margin: '0 0 10 70',
                 items: [
                     {
                         xtype: 'textfield',
                         fieldLabel: 'Contact',
+                        id: 'contactField',
                         name: 'contact',
                         allowBlank: false
                     }
@@ -107,12 +112,13 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 5 0',
+                margin: '0 0 10 70',
                 items: [
                     {
                         xtype: 'combo',
                         fieldLabel: 'Gender',
                         name: 'gender',
+                        id: 'genderField',
                         valueField: 'gender',
                         queryMode: 'local',
                         allowBlank: false,
@@ -133,13 +139,14 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 5 0',
+                margin: '0 0 10 70',
                 items: [
                     {
                         xtype: 'combo',
                         fieldLabel: 'Role',
                         name: 'role',
                         valueField: 'role',
+                        id: 'roleField',
                         queryMode: 'local',
                         allowBlank: false,
                         store: ['admin', 'buyer', 'seller'],
@@ -160,14 +167,51 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 5 0',
+                margin: '0 0 10 70',
                 items: [
                     {
                         xtype: 'textfield',
                         fieldLabel: 'Password',
                         inputType: 'password',
+                        id: 'passwordField',
                         name: 'password',
                         allowBlank: false,
+                    }
+                ]
+            }, {
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '0 0 10 70',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: 'Submit Type',
+                        id: 'submitTypeField',
+                        name: 'submitType',
+                        listeners: {
+                            'render': function (p) {
+                                // check certain conditions
+                                this.hide()
+                            }
+                        },
+                    }
+                ]
+            }, {
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '0 0 10 70',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: 'User ID',
+                        id: 'userIdField',
+                        name: 'userId',
+                        listeners: {
+                            'render': function (p) {
+                                // check certain conditions
+                                this.hide()
+                            }
+                        },
                     }
                 ]
             }],

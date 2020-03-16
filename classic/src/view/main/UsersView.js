@@ -1,5 +1,6 @@
 Ext.define('Admin.dashboard.view.Users', {
     extend: 'Ext.grid.Panel',
+    // requires: ['Sandbox.view.SearchTrigger'],
     xtype: 'Users',
     title: 'Users',
     id: 'userGrid',
@@ -20,13 +21,11 @@ Ext.define('Admin.dashboard.view.Users', {
         edit: {
             iconCls: 'x-fa fa-pencil-square blue',
             tooltip: 'Edit',
-            handler: function () {
-                Ext.getCmp('addUserModal').setTitle('Edit User');
-                Ext.getCmp('addUserModal').show();
-            }
+            handler: 'onEditClick'
         }
     },
     columns: [
+        new Ext.grid.RowNumberer(),
         { text: 'ID', dataIndex: '_id', hidden: true },
         { text: 'First Name', dataIndex: 'firstname' },
         { text: 'Last Name', dataIndex: 'lastname', flex: 1 },
@@ -40,21 +39,21 @@ Ext.define('Admin.dashboard.view.Users', {
             items: ['@edit', '@delete']
         }
     ],
-    id: "testCheck",
-    selModel: {
-        injectCheckbox: 'first',
-        checkOnly: true,
-        model: 'SIMPLE',
-        type: 'checkboxmodel'
-    },
-    buttons: [
-        {
-            text: 'Select All',
-            handler: function () {
-                Ext.getCmp('testCheck').getSelectionModel().selectAll();
-            }
-        }
-    ],
+    // id: "testCheck",
+    // selModel: {
+    //     injectCheckbox: 'first',
+    //     checkOnly: true,
+    //     model: 'SIMPLE',
+    //     type: 'checkboxmodel'
+    // },
+    // buttons: [
+    //     {
+    //         text: 'Select All',
+    //         handler: function () {
+    //             Ext.getCmp('testCheck').getSelectionModel().selectAll();
+    //         }
+    //     }
+    // ],
     tbar: [{
         text: 'Add User',
         iconCls: 'x-fa fa-plus blue',
@@ -72,6 +71,22 @@ Ext.define('Admin.dashboard.view.Users', {
     }, {
         xtype: 'button',
         text: 'Search',
-        iconCls: 'x-fa fa-search blue'
+        iconCls: 'x-fa fa-search blue',
+        handler: function (filterId, value) {
+            var store = this.up('grid').getStore();
+            if (value) {
+                store.removeFilter(filterId, false)
+                var filter = { id: filterId, property: filterId, value: value };
+                if (this.anyMatch) filter.anyMatch = this.anyMatch
+                if (this.caseSensitive) filter.caseSensitive = this.caseSensitive
+                if (this.exactMatch) filter.exactMatch = this.exactMatch
+                if (this.operator) filter.operator = this.operator
+                console.log(this.anyMatch, filter)
+                store.addFilter(filter)
+            } else {
+                store.filters.removeAtKey(filterId)
+                store.reload()
+            }
+        }
     }],
 })
