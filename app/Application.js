@@ -54,6 +54,7 @@ Ext.define('Admin.dashboard.Application', {
                         name: 'firstname',
                         id: 'firstnameField',
                         allowBlank: false,
+                        blankText: 'This should not be blank!',
                     }
                 ]
             }, {
@@ -66,7 +67,8 @@ Ext.define('Admin.dashboard.Application', {
                         fieldLabel: 'Last Name',
                         id: 'lastnameField',
                         name: 'lastname',
-                        allowBlank: false
+                        allowBlank: false,
+                        blankText: 'This should not be blank!'
                     }
                 ]
             }, {
@@ -79,7 +81,8 @@ Ext.define('Admin.dashboard.Application', {
                         fieldLabel: 'Username',
                         id: 'usernameField',
                         name: 'username',
-                        allowBlank: false
+                        allowBlank: false,
+                        blankText: 'This should not be blank!'
                     }
                 ]
             }, {
@@ -92,8 +95,10 @@ Ext.define('Admin.dashboard.Application', {
                         fieldLabel: 'Email',
                         name: 'email',
                         id: 'emailField',
-                        inputType: 'email',
-                        allowBlank: false
+                        allowBlank: false,
+                        blankText: 'This should not be blank!',
+                        regex: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+                        regexText: 'Please enter valid email!'
                     }
                 ]
             }, {
@@ -106,7 +111,10 @@ Ext.define('Admin.dashboard.Application', {
                         fieldLabel: 'Contact',
                         id: 'contactField',
                         name: 'contact',
-                        allowBlank: false
+                        allowBlank: false,
+                        blankText: 'This should not be blank!',
+                        regex: /^[0]?[789]\d{9}$/,
+                        regexText: 'Please enter valid contact number!'
                     }
                 ]
             }, {
@@ -122,6 +130,7 @@ Ext.define('Admin.dashboard.Application', {
                         valueField: 'gender',
                         queryMode: 'local',
                         allowBlank: false,
+                        blankText: 'This should not be blank!',
                         store: ['male', 'female'],
                         displayField: 'gender',
                         onFocus: function () {
@@ -149,6 +158,7 @@ Ext.define('Admin.dashboard.Application', {
                         id: 'roleField',
                         queryMode: 'local',
                         allowBlank: false,
+                        blankText: 'This should not be blank!',
                         store: ['admin', 'buyer', 'seller'],
                         displayField: 'role',
                         onFocus: function () {
@@ -176,6 +186,7 @@ Ext.define('Admin.dashboard.Application', {
                         id: 'passwordField',
                         name: 'password',
                         allowBlank: false,
+                        blankText: 'This should not be blank!',
                     }
                 ]
             }, {
