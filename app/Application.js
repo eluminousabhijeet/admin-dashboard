@@ -236,8 +236,171 @@ Ext.define('Admin.dashboard.Application', {
                     handler: 'onCancelBtnClick'
                 }
             ]
+        });
+
+        var formPanel2 = Ext.create('Ext.form.Panel', {
+            width: 500,
+            height: 500,
+            title: 'Add Product',
+            id: 'addProductModal',
+            region: 'center',
+            floating: true,
+            closable: true,
+            controller: 'product',
+            defaultType: 'textfield',
+            items: [, {
+                xtype: 'container',
+                layout: 'hbox',
+                margin: '40 0 10 70',
+                items: [
+                    {
+                        xtype: 'combo',
+                        fieldLabel: 'Category',
+                        name: 'category',
+                        valueField: 'category',
+                        id: 'categoryField',
+                        queryMode: 'local',
+                        allowBlank: false,
+                        blankText: 'This should not be blank!',
+                        store: ['Electronics', 'Fashion', 'Wearables'],
+                        displayField: 'category',
+                        onFocus: function () {
+                            var me = this;
+
+                            if (!me.isExpanded) {
+                                me.expand()
+                            }
+                            me.getPicker().focus();
+                        },
+                        autoSelect: true,
+                        forceSelection: true,
+                        editable: false
+                    }
+                ]
+            }, {
+                    xtype: 'container',
+                    layout: 'hbox',
+                    margin: '0 0 10 70',
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Name',
+                            name: 'name',
+                            id: 'nameField',
+                            allowBlank: false,
+                            blankText: 'This should not be blank!',
+                        }
+                    ]
+                }, {
+                    xtype: 'container',
+                    layout: 'hbox',
+                    margin: '0 0 10 70',
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Description',
+                            id: 'descriptionField',
+                            name: 'description',
+                            allowBlank: false,
+                            blankText: 'This should not be blank!'
+                        }
+                    ]
+                }, {
+                    xtype: 'container',
+                    layout: 'hbox',
+                    margin: '0 0 10 70',
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Price',
+                            id: 'priceField',
+                            name: 'price',
+                            allowBlank: false,
+                            blankText: 'This should not be blank!'
+                        }
+                    ]
+                }, {
+                    xtype: 'container',
+                    layout: 'hbox',
+                    margin: '0 0 10 70',
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Stock',
+                            name: 'stock',
+                            id: 'stockField',
+                            allowBlank: false,
+                            blankText: 'This should not be blank!',
+                            regex: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+                            regexText: 'Please enter valid email!'
+                        }
+                    ]
+                }, {
+                    xtype: 'container',
+                    layout: 'hbox',
+                    margin: '0 0 10 70',
+                    items: [
+                        {
+                            xtype: 'filefield',
+                            fieldLabel: 'Featured Image',
+                            buttonOnly: true,
+                            id: 'imageField',
+                            name: 'image',
+                            allowBlank: false,
+                            blankText: 'Image is required!',
+                        }
+                    ]
+                }, {
+                    xtype: 'container',
+                    layout: 'hbox',
+                    margin: '0 0 10 70',
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Submit Type',
+                            id: 'submitProductTypeField',
+                            name: 'submitProductType',
+                            listeners: {
+                                'render': function (p) {
+                                    // check certain conditions
+                                    this.hide()
+                                }
+                            },
+                        }
+                    ]
+                }, {
+                    xtype: 'container',
+                    layout: 'hbox',
+                    margin: '0 0 10 70',
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Product ID',
+                            id: 'productIdField',
+                            name: 'productId',
+                            listeners: {
+                                'render': function (p) {
+                                    // check certain conditions
+                                    this.hide()
+                                }
+                            },
+                        }
+                    ]
+                }],
+            buttons: [
+                {
+                    text: 'Submit',
+                    handler: 'onAddBtnClick'
+                },
+                {
+                    text: 'Close',
+                    handler: 'onCancelBtnClick'
+                }
+            ]
         })
     },
+
+
 
     onAppUpdate: function () {
         Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
