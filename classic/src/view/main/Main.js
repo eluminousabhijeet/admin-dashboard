@@ -93,10 +93,10 @@ Ext.define('Admin.dashboard.view.main.Main', {
             xtype: 'Products'
         }]
     }, {
-        title: 'Settings',
-        iconCls: 'x-fa fa-cog',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        title: 'Orders',
+        iconCls: 'x-fa fa-shopping-cart',
+        items: [{
+            xtype: 'Orders'
+        }]
     }]
 });

@@ -1,6 +1,6 @@
-Ext.define('Admin.dashboard.view.ProductController', {
+Ext.define('Admin.dashboard.view.OrderController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.product',
+    alias: 'controller.order',
     onChangefilefield: function (filefield, newData, oldData, eOpts) {
         var filesSelected = filefield.getEl().down('input[type=file]').dom.files[0];
         var reader = new FileReader();
@@ -53,7 +53,6 @@ Ext.define('Admin.dashboard.view.ProductController', {
         var data = button.up('form');
         const category = data.getForm().findField("category").getValue();
         const name = data.getForm().findField("name").getValue();
-        const slug = data.getForm().findField("name").getValue().toLowerCase().replace(/ /g, '-');
         const description = data.getForm().findField("description").getValue();
         const price = data.getForm().findField("price").getValue();
         const stock = data.getForm().findField("stock").getValue();
@@ -79,7 +78,6 @@ Ext.define('Admin.dashboard.view.ProductController', {
                         price: price,
                         stock: stock,
                         image: image,
-                        slug: slug,
                         status: status
                     },
                     success: function (response) {
@@ -115,7 +113,6 @@ Ext.define('Admin.dashboard.view.ProductController', {
                         price: price,
                         stock: stock,
                         image: image,
-                        slug: slug,
                         status: status
                     },
                     success: function (response) {
@@ -139,10 +136,8 @@ Ext.define('Admin.dashboard.view.ProductController', {
         }
     },
 
-    onCancelBtnClick: function (button) {
-        Ext.getCmp('addProductModal').hide();
-        Ext.getCmp('addProductModal').reset();
-        Ext.getCmp('prodDetailPanel').hide();
+    onCloseBtnClick: function (button) {
+        Ext.getCmp('orderViewPanel').hide();
     },
 
     // onCategoryRender: function (value, metaData, record, rowIndex, colIndex, store) {
@@ -170,13 +165,24 @@ Ext.define('Admin.dashboard.view.ProductController', {
     // },
 
     onViewClick: function(grid, rowIndex){
-        Ext.getCmp('prodDetailPanel').show();
+        Ext.getCmp('orderViewPanel').show();
         var rec = grid.getStore().getAt(rowIndex);
-        Ext.getCmp('panelProductImage').setSrc(rec.get('image'));
-        Ext.getCmp('productTitle').update("<h2>"+rec.get('name')+"</h2>");
-        Ext.getCmp('productDescription').update("<p>"+rec.get('description')+"</p>");
-        Ext.getCmp('productPrice').update("<p><strong>Price: </strong>"+parseFloat(rec.get('price')).toFixed('2')+" ₹</p>");
-        Ext.getCmp('productStock').update("<p><strong>Stock: </strong>"+rec.get('stock')+"</p>");
+        var productData = rec.get('productId');
+        var userData = rec.get('userId');
+        // Ext.getCmp('panelProductImage').setSrc(rec.get('image'));
+        Ext.getCmp('productIdValue').update(productData['_id']);
+        Ext.getCmp('productNameValue').update(productData['name']);
+        Ext.getCmp('productQuantityValue').update(rec.get('quantity'));
+        Ext.getCmp('productCostValue').update(rec.get('totalCost'));
+        Ext.getCmp('productShippingNameValue').update(rec.get('shippingName'));
+        Ext.getCmp('productShippingAddressValue').update(rec.get('shippingAddress'));
+        Ext.getCmp('productShippingPostcodeValue').update(rec.get('shippingPostcode'));
+        Ext.getCmp('productShippingCountryValue').update(rec.get('shippingCountry'));
+        Ext.getCmp('productShippingStateValue').update(rec.get('shippingState'));
+        Ext.getCmp('productShippingCityValue').update(rec.get('shippingCity'));
+        // Ext.getCmp('productDescription').update("<p>"+rec.get('description')+"</p>");
+        // Ext.getCmp('productPrice').update("<p><strong>Price: </strong>"+parseFloat(rec.get('price')).toFixed('2')+" ₹</p>");
+        // Ext.getCmp('productStock').update("<p><strong>Stock: </strong>"+rec.get('stock')+"</p>");
     },
 
     onEditClick: function (grid, rowIndex) {
@@ -185,7 +191,7 @@ Ext.define('Admin.dashboard.view.ProductController', {
         Ext.getCmp('imageField').allowBlank = true;
         var rec = grid.getStore().getAt(rowIndex);
         Ext.getCmp('nameField').setValue(rec.get('name'));
-        Ext.getCmp('categoryField').setValue(rec.get('category'));
+        Ext.getCmp('categoryField').setValue(rec.get('categoryId'));
         Ext.getCmp('descriptionField').setValue(rec.get('description'));
         Ext.getCmp('priceField').setValue(rec.get('price'));
         Ext.getCmp('stockField').setValue(rec.get('stock'));

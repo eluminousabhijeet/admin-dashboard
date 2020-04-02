@@ -3,9 +3,13 @@
     /* text-transform: capitalize !important; */
 }
 
+.fa-eye{
+    margin-left: 10px;
+}
+
 .fa-pencil-square{
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #form-1058-innerCt{
@@ -17,12 +21,24 @@
     color: #ff0000;
 }
 
+.green{
+    color: #5cb85c;
+}
+
 .blue{
     color: #3366ff;
 }
 
 .x-tool-tool-el{
     display: none;
+}
+
+td {
+    border: 0.5px solid black;
+}
+
+table{
+    border-bottom: 1px solid black;
 }
 
 /* .errorField{

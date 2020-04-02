@@ -2,7 +2,8 @@ Ext.define('Admin.dashboard.model.Users', {
     extend: 'Ext.data.Model',
     alias: 'model.Users',
     fields: [
-        { firstname: 'firstname', type: 'int' },
+        { id: '_id' },
+        { firstname: 'firstname' },
         { lastname: 'lastname' },
         { username: 'username' },
         { email: 'email' },

@@ -13,13 +13,18 @@ Ext.define('Admin.dashboard.view.Products', {
         displayInfo: true
     },
     actions: {
+        view: {
+            handler: 'onViewClick',
+            iconCls: 'x-fa fa-eye blue',
+            tooltip: 'View'
+        },
         delete: {
             handler: 'onDeleteClick',
             iconCls: 'x-fa fa-trash-o red',
             tooltip: 'Delete'
         },
         edit: {
-            iconCls: 'x-fa fa-pencil-square blue',
+            iconCls: 'x-fa fa-pencil-square green',
             tooltip: 'Edit',
             handler: 'onEditClick'
         }
@@ -27,13 +32,19 @@ Ext.define('Admin.dashboard.view.Products', {
     columns: [
         new Ext.grid.RowNumberer(),
         { text: 'ID', dataIndex: '_id', hidden: true },
-        { text: 'Name', dataIndex: 'name' },
-        { text: 'Category', dataIndex: 'category', flex: 1 },
+        { text: 'Name', dataIndex: 'name', flex: 1 },
+        { text: 'Slug', dataIndex: 'slug', flex: 1 },
+        { text: 'Description', dataIndex: 'description', flex: 1 },
+        { text: 'Category', dataIndex: 'category', renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            return record.getData().categoryId.name;
+        }, flex: 1 },
         { text: 'Price', dataIndex: 'price', flex: 1 },
-        { text: 'Stock', dataIndex: 'stock', width: 250 },
+        { text: 'Image', dataIndex: 'image', hidden: true },
+        { text: 'Stock', dataIndex: 'stock', flex: 1 },
         {
             xtype: 'actioncolumn',
-            items: ['@edit', '@delete']
+            items: ['@view', '@edit', '@delete'],
+            width: 100
         }
     ],
     // id: "testCheck",

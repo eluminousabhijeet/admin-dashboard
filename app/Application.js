@@ -33,7 +33,7 @@ Ext.define('Admin.dashboard.Application', {
             xtype: loggedIn ? 'app-main' : 'login'
         });
 
-        var formPanel = Ext.create('Ext.form.Panel', {
+        var UserFormPanel = Ext.create('Ext.form.Panel', {
             width: 500,
             height: 500,
             title: 'Add User',
@@ -46,7 +46,7 @@ Ext.define('Admin.dashboard.Application', {
             items: [{
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '40 0 10 70',
+                margin: '40 30 10 30',
                 items: [
                     {
                         xtype: 'textfield',
@@ -54,13 +54,15 @@ Ext.define('Admin.dashboard.Application', {
                         name: 'firstname',
                         id: 'firstnameField',
                         allowBlank: false,
+                        width: '100%',
                         blankText: 'This should not be blank!',
+                        msgTarget: 'side',
                     }
                 ]
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 10 70',
+                margin: '0 30 10 30',
                 items: [
                     {
                         xtype: 'textfield',
@@ -68,13 +70,15 @@ Ext.define('Admin.dashboard.Application', {
                         id: 'lastnameField',
                         name: 'lastname',
                         allowBlank: false,
-                        blankText: 'This should not be blank!'
+                        width: '100%',
+                        blankText: 'This should not be blank!',
+                        msgTarget: 'side',
                     }
                 ]
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 10 70',
+                margin: '0 30 10 30',
                 items: [
                     {
                         xtype: 'textfield',
@@ -82,13 +86,15 @@ Ext.define('Admin.dashboard.Application', {
                         id: 'usernameField',
                         name: 'username',
                         allowBlank: false,
-                        blankText: 'This should not be blank!'
+                        width: '100%',
+                        blankText: 'This should not be blank!',
+                        msgTarget: 'side',
                     }
                 ]
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 10 70',
+                margin: '0 30 10 30',
                 items: [
                     {
                         xtype: 'textfield',
@@ -96,7 +102,9 @@ Ext.define('Admin.dashboard.Application', {
                         name: 'email',
                         id: 'emailField',
                         allowBlank: false,
+                        width: '100%',
                         blankText: 'This should not be blank!',
+                        msgTarget: 'side',
                         regex: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
                         regexText: 'Please enter valid email!'
                     }
@@ -104,7 +112,7 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 10 70',
+                margin: '0 30 10 30',
                 items: [
                     {
                         xtype: 'textfield',
@@ -112,7 +120,9 @@ Ext.define('Admin.dashboard.Application', {
                         id: 'contactField',
                         name: 'contact',
                         allowBlank: false,
+                        width: '100%',
                         blankText: 'This should not be blank!',
+                        msgTarget: 'side',
                         regex: /^[0]?[789]\d{9}$/,
                         regexText: 'Please enter valid contact number!'
                     }
@@ -120,7 +130,7 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 10 70',
+                margin: '0 30 10 30',
                 items: [
                     {
                         xtype: 'combo',
@@ -130,7 +140,9 @@ Ext.define('Admin.dashboard.Application', {
                         valueField: 'gender',
                         queryMode: 'local',
                         allowBlank: false,
+                        width: '100%',
                         blankText: 'This should not be blank!',
+                        msgTarget: 'side',
                         store: ['male', 'female'],
                         displayField: 'gender',
                         onFocus: function () {
@@ -148,7 +160,7 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 10 70',
+                margin: '0 30 10 30',
                 items: [
                     {
                         xtype: 'combo',
@@ -158,7 +170,9 @@ Ext.define('Admin.dashboard.Application', {
                         id: 'roleField',
                         queryMode: 'local',
                         allowBlank: false,
+                        width: '100%',
                         blankText: 'This should not be blank!',
+                        msgTarget: 'side',
                         store: ['admin', 'buyer', 'seller'],
                         displayField: 'role',
                         onFocus: function () {
@@ -177,7 +191,7 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 10 70',
+                margin: '0 30 10 30',
                 items: [
                     {
                         xtype: 'textfield',
@@ -186,13 +200,15 @@ Ext.define('Admin.dashboard.Application', {
                         id: 'passwordField',
                         name: 'password',
                         allowBlank: false,
+                        width: '100%',
                         blankText: 'This should not be blank!',
+                        msgTarget: 'side',
                     }
                 ]
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 10 70',
+                margin: '0 30 10 30',
                 items: [
                     {
                         xtype: 'textfield',
@@ -210,7 +226,7 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '0 0 10 70',
+                margin: '0 30 10 30',
                 items: [
                     {
                         xtype: 'textfield',
@@ -238,7 +254,7 @@ Ext.define('Admin.dashboard.Application', {
             ]
         });
 
-        var formPanel2 = Ext.create('Ext.form.Panel', {
+        var productFormPanel = Ext.create('Ext.form.Panel', {
             width: 500,
             height: 500,
             title: 'Add Product',
@@ -251,7 +267,7 @@ Ext.define('Admin.dashboard.Application', {
             items: [, {
                 xtype: 'container',
                 layout: 'hbox',
-                margin: '40 0 10 70',
+                margin: '40 20 10 20',
                 items: [
                     {
                         xtype: 'combo',
@@ -259,11 +275,17 @@ Ext.define('Admin.dashboard.Application', {
                         name: 'category',
                         valueField: 'category',
                         id: 'categoryField',
+                        width: '100%',
                         queryMode: 'local',
                         allowBlank: false,
                         blankText: 'This should not be blank!',
-                        store: ['Electronics', 'Fashion', 'Wearables'],
-                        displayField: 'category',
+                        msgTarget: 'side',
+                        store: {
+                            type: 'categories'
+                        },
+                        queryMode: 'local',
+                        displayField: 'name',
+                        valueField: '_id',
                         onFocus: function () {
                             var me = this;
 
@@ -280,80 +302,126 @@ Ext.define('Admin.dashboard.Application', {
             }, {
                     xtype: 'container',
                     layout: 'hbox',
-                    margin: '0 0 10 70',
+                    margin: '0 20 10 20',
                     items: [
                         {
                             xtype: 'textfield',
                             fieldLabel: 'Name',
                             name: 'name',
+                            width: '100%',
                             id: 'nameField',
                             allowBlank: false,
                             blankText: 'This should not be blank!',
+                            msgTarget: 'side',
                         }
                     ]
                 }, {
                     xtype: 'container',
                     layout: 'hbox',
-                    margin: '0 0 10 70',
+                    margin: '0 20 10 20',
                     items: [
                         {
-                            xtype: 'textfield',
+                            xtype: 'textarea',
                             fieldLabel: 'Description',
                             id: 'descriptionField',
                             name: 'description',
+                            width: '100%',
                             allowBlank: false,
-                            blankText: 'This should not be blank!'
+                            blankText: 'This should not be blank!',
+                            msgTarget: 'side',
                         }
                     ]
                 }, {
                     xtype: 'container',
                     layout: 'hbox',
-                    margin: '0 0 10 70',
+                    margin: '0 20 10 20',
                     items: [
                         {
                             xtype: 'textfield',
                             fieldLabel: 'Price',
                             id: 'priceField',
                             name: 'price',
+                            width: '100%',
                             allowBlank: false,
-                            blankText: 'This should not be blank!'
+                            blankText: 'This should not be blank!',
+                            msgTarget: 'side',
+                            regex: /^[0-9]?[0-9 .]*$/,
+                            regexText: 'Please enter valid price!'
                         }
                     ]
                 }, {
                     xtype: 'container',
                     layout: 'hbox',
-                    margin: '0 0 10 70',
+                    margin: '0 20 10 20',
                     items: [
                         {
                             xtype: 'textfield',
                             fieldLabel: 'Stock',
                             name: 'stock',
+                            width: '100%',
                             id: 'stockField',
                             allowBlank: false,
                             blankText: 'This should not be blank!',
-                            regex: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-                            regexText: 'Please enter valid email!'
+                            msgTarget: 'side',
+                            regex: /^[0-9]?[0-9]*$/,
+                            regexText: 'Please enter valid stock!'
                         }
                     ]
                 }, {
                     xtype: 'container',
                     layout: 'hbox',
-                    margin: '0 0 10 70',
+                    margin: '0 20 10 20',
                     items: [
                         {
                             xtype: 'filefield',
-                            fieldLabel: 'Featured Image',
-                            buttonOnly: true,
-                            id: 'imageField',
-                            name: 'image',
+                            accept: 'image/*',
+                            name: 'image-path[]',
+                            fieldLabel: 'Image',
+                            id: "imageField",
+                            width: '100%',
+                            msgTarget: 'side',
                             allowBlank: false,
                             blankText: 'Image is required!',
+                            anchor: '100%',
+                            buttonText: '',
+                            buttonConfig: {
+                                iconCls: 'x-fa fa-file'
+                            },
+                            emptyText: 'Only JPG or PNG allowed',
+                            listeners: {
+                                change: 'onChangefilefield'
+                            }
+                        }, {
+                            xtype: 'image',
+                            hidden: true,
+                            id: 'imagePreview',
+                            height: 158,
+                            width: 158,
+                            src: ''
                         }
                     ]
                 }, {
                     xtype: 'container',
                     layout: 'hbox',
-                    margin: '0 0 10 70',
+                    margin: '0 20 10 20',
+                    items: [
+                        {
+                            xtype: 'textarea',
+                            fieldLabel: 'imageData',
+                            name: 'imageData',
+                            id: 'imageDataField',
+                            listeners: {
+                                'render': function (p) {
+                                    // check certain conditions
+                                    this.hide()
+                                }
+                            },
+                        }
+                    ]
+                }, {
+                    xtype: 'container',
+                    layout: 'hbox',
+                    margin: '0 20 10 20',
                     items: [
                         {
                             xtype: 'textfield',
@@ -371,7 +439,7 @@ Ext.define('Admin.dashboard.Application', {
                 }, {
                     xtype: 'container',
                     layout: 'hbox',
-                    margin: '0 0 10 70',
+                    margin: '0 20 10 20',
                     items: [
                         {
                             xtype: 'textfield',
@@ -396,11 +464,139 @@ Ext.define('Admin.dashboard.Application', {
                     text: 'Close',
                     handler: 'onCancelBtnClick'
                 }
-            ]
+            ],
+        });
+
+        var viewProductPanel = Ext.create('Ext.panel.Panel', {
+            width: 500,
+            height: 500,
+            title: 'Details',
+            region: 'center',
+            floating: true,
+            closable: true,
+            autoScroll: true,
+            controller: 'product',
+            id: 'prodDetailPanel',
+            items: [{
+                xtype: 'image',
+                id: 'panelProductImage',
+                src: '',
+                width: 300,
+                height: 300,
+            }, {
+                id: 'productTitle',
+            }, {
+                id: 'productDescription',
+            }, {
+                id: 'productPrice',
+            }, {
+                id: 'productStock',
+            }],
+            buttons: [
+                {
+                    text: 'Close',
+                    handler: 'onCancelBtnClick'
+                }
+            ],
+        });
+
+        var orderViewPanel = Ext.create('Ext.panel.Panel', {
+            xtype: 'layout-table',
+            width: 500,
+            height: '90%',
+            id: 'orderViewPanel',
+            floating: true,
+            closable: true,
+            autoScroll: true,
+            controller: 'order',
+
+            layout: {
+                type: 'table',
+                columns: 2,
+                tableAttrs: {
+                    style: {
+                        width: '100%'
+                    }
+                }
+            },
+
+
+            scrollable: true,
+
+
+            defaults: {
+                bodyPadding: '10 20',
+            },
+
+            items: [{
+                html: '<strong>Product Id</strong>',
+                rowspan: 1,
+            }, {
+                id: 'productIdValue',
+                colspan: 2
+            }, {
+                html: '<strong>Product Name</strong>',
+                cellCls: 'highlight'
+            }, {
+                id: 'productNameValue',
+                colspan: 2
+            }, {
+                html: '<strong>Quantity</strong>',
+                cellCls: 'highlight'
+            }, {
+                id: 'productQuantityValue',
+                colspan: 2
+            }, {
+                html: '<strong>Total Cost</strong>',
+                cellCls: 'highlight'
+            }, {
+                id: 'productCostValue',
+                colspan: 2
+            }, {
+                html: '<strong>Shipping Name</strong>',
+                cellCls: 'highlight'
+            }, {
+                id: 'productShippingNameValue',
+                colspan: 2
+            }, {
+                html: '<strong>Shipping Address</strong>',
+                cellCls: 'highlight'
+            }, {
+                id: 'productShippingAddressValue',
+                colspan: 2
+            }, {
+                html: '<strong>Postcode</strong>',
+                cellCls: 'highlight'
+            }, {
+                id: 'productShippingPostcodeValue',
+                colspan: 2
+            }, {
+                html: '<strong>Country</strong>',
+                cellCls: 'highlight'
+            }, {
+                id: 'productShippingCountryValue',
+                colspan: 2
+            }, {
+                html: '<strong>State</strong>',
+                cellCls: 'highlight'
+            }, {
+                id: 'productShippingStateValue',
+                colspan: 2
+            }, {
+                html: '<strong>City</strong>',
+                cellCls: 'highlight'
+            }, {
+                id: 'productShippingCityValue',
+                colspan: 2
+            }],
+            buttons: [
+                {
+                    text: 'Close',
+                    handler: 'onCloseBtnClick'
+                }
+            ],
         })
     },
-
-
 
     onAppUpdate: function () {
         Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
